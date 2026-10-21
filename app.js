@@ -1,5 +1,5 @@
 /* Evaluador de Reparación — versión para GitHub Pages.
-   Los datos (equipos, piezas y precios) se leen de equipos.json.
+   Los datos (equipos, piezas y precios) se leen de datos/equipos.json.
    Para cambiar precios, edita ese archivo; no hace falta tocar este código. */
 (function(){
 const $=id=>document.getElementById(id);
@@ -49,7 +49,7 @@ function renderStage(){
   $('zLbl').textContent=Math.round(V.zoom*100)+'%';
   if(!e.plano){st.innerHTML='<div class="empty-stage">Este equipo aún no tiene plano.</div>';return}
   const pins=visible(e).map(p=>p.x==null?'':`<button class="pin ${isSel(p)?'a-rep':'a-ok'}" style="left:${n(p.x)}%;top:${n(p.y)}%" data-id="${esc(p.id)}" aria-label="${esc(p.plano)} ${esc(p.nombre)}">${esc(p.plano||'•')}</button>`).join('');
-  st.innerHTML=`<div class="canvas" style="width:${V.zoom*100}%"><img src="${esc(e.plano)}" alt="Plano de ${esc(e.nombre)}" draggable="false">${pins}</div>`;
+  st.innerHTML=`<div class="canvas" style="width:${V.zoom*100}%"><img src="${esc(e.plano)}" onerror="if(!this.dataset.f){this.dataset.f=1;this.src=this.getAttribute('src').split('/').pop()}" alt="Plano de ${esc(e.nombre)}" draggable="false">${pins}</div>`;
 }
 function renderParts(){
   const e=eq(),vis=visible(e),cur=e.moneda;
@@ -89,7 +89,62 @@ function renderVerdict(){
   $('dock').innerHTML=`<div class="verdict ${r.v}" style="padding:0;border:0;background:none"><span class="v-label">${r.label}</span></div>
     <div style="text-align:right"><div class="num" style="font-weight:600">${money(r.repair,cur)}</div><div class="hint num">${r.ratio===null?'—':r.ratio.toFixed(0)+'% de reposición'}</div></div>`;
 }
-function renderAll(){renderEqSelect();renderInfo();renderStage();renderParts();renderVerdict()}
+function renderAll(){renderEqSelect();renderInfo();renderStage();renderParts();renderVerdict();renderReg()}
+
+/* ---------- Historial de reparaciones (Google Sheets vía Apps Script) ---------- */
+const HURL=()=>String(DATA.historialURL||'').trim();
+const CENTROS=()=>(Array.isArray(DATA.centros)&&DATA.centros.length)?DATA.centros:['Mina Providencia','Mina Sandra K','Mina Silencio'];
+function renderReg(){
+  const on=!!HURL();$('regPanel').hidden=!on;if(!on){$('histPanel').hidden=true;return}
+  const cs=CENTROS();if(!cs.includes(V.centro))V.centro=cs[0];
+  $('rCentro').innerHTML=cs.map(c=>`<option ${c===V.centro?'selected':''}>${esc(c)}</option>`).join('');
+  const e=eq();$('activosList').innerHTML=(e.activos||[]).filter(a=>!a.centro||a.centro===V.centro).map(a=>`<option value="${esc(a.numero)}">${esc(a.descripcion||'')}</option>`).join('');
+  if(!$('rResp').value)$('rResp').value=V.resp||'';
+}
+function msg(t,bad){$('rMsg').textContent=t;$('rMsg').style.color=bad?'var(--bad)':''}
+function payload(){
+  const e=eq(),r=compute(e),sel=visible(e).filter(isSel);
+  return {centro:$('rCentro').value,activo:$('rActivo').value.trim().toUpperCase(),equipo:e.nombre,equipoId:e.id,ot:$('rOT').value.trim(),responsable:$('rResp').value.trim(),
+    decision:$('rDec').value,dictamen:r.label,total:Math.round(r.repair),valorReposicion:r.nv,pct:r.ratio===null?'':+r.ratio.toFixed(1),umbral:r.th,
+    piezas:sel.map(p=>`${p.plano} ${p.nombre} x${qtyOf(p,e)}`).join('; '),observaciones:$('rObs').value.trim()};
+}
+async function saveHist(){
+  const d=payload();
+  if(!d.activo){msg('Escribe el número de activo.',true);$('rActivo').focus();return}
+  if(!d.piezas){msg('Marca al menos una pieza.',true);return}
+  if(!d.responsable){msg('Escribe quién registra.',true);$('rResp').focus();return}
+  V.resp=d.responsable;saveV();
+  $('btnSave').disabled=true;msg('Guardando…');
+  const body=JSON.stringify(d);
+  try{await fetch(HURL(),{method:'POST',body,headers:{'Content-Type':'text/plain;charset=utf-8'}})}
+  catch(err){try{await fetch(HURL(),{method:'POST',body,mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'}})}catch(e2){$('btnSave').disabled=false;msg('No se pudo guardar. Revisa la conexión e inténtalo de nuevo.',true);return}}
+  $('btnSave').disabled=false;msg('Reparación guardada en el historial.');
+  $('rOT').value='';$('rObs').value='';loadHist();
+}
+async function loadHist(){
+  const a=$('rActivo').value.trim().toUpperCase();if(!a){msg('Escribe el número de activo.',true);return}
+  $('histPanel').hidden=false;$('histTitle').textContent=a;$('histRows').innerHTML='<tr><td colspan="3" class="muted">Cargando…</td></tr>';$('histSum').innerHTML='';
+  try{
+    const r=await fetch(HURL()+(HURL().includes('?')?'&':'?')+'activo='+encodeURIComponent(a),{cache:'no-store'});
+    const d=await r.json();const rows=d.rows||[];const e=eq(),cur=e.moneda;
+    if(!rows.length){$('histRows').innerHTML='<tr><td colspan="3" class="muted">Este activo aún no tiene reparaciones registradas.</td></tr>';return}
+    const tot=rows.reduce((s,x)=>s+n(x.total),0),yr=Date.now()-365*864e5;
+    const tot12=rows.filter(x=>new Date(x.fecha).getTime()>=yr).reduce((s,x)=>s+n(x.total),0);
+    const nv=n(e.valorReposicion);
+    $('histSum').innerHTML=`<div><span>Reparaciones registradas</span><span>${rows.length}</span></div>
+      <div><span>Gastado últimos 12 meses</span><span>${money(tot12,cur)}${nv?' · '+(tot12/nv*100).toFixed(0)+'%':''}</span></div>
+      <div class="tot"><span>Gastado en total</span><span>${money(tot,cur)}${nv?' · '+(tot/nv*100).toFixed(0)+'% del equipo nuevo':''}</span></div>`;
+    $('histRows').innerHTML=rows.map(x=>{const f=new Date(x.fecha);return `<tr><td class="num" style="white-space:nowrap">${isNaN(f)?esc(x.fecha):f.toLocaleDateString('es-CO')}</td>
+      <td><div class="pname">${esc(x.decision||'')} · ${esc(x.dictamen||'')}</div><div class="psub">${x.centro?esc(x.centro)+' · ':''}${x.ot?'OT '+esc(x.ot)+' · ':''}${esc(x.responsable||'')}</div><div class="psub">${esc(x.piezas||'')}</div>${x.observaciones?`<div class="hint">${esc(x.observaciones)}</div>`:''}</td>
+      <td class="num" style="text-align:right;white-space:nowrap">${money(n(x.total),cur)}</td></tr>`}).join('');
+  }catch(err){$('histRows').innerHTML='<tr><td colspan="3" class="muted">No se pudo leer el historial. Revisa la conexión.</td></tr>'}
+}
+$('btnSave').onclick=saveHist;
+$('rCentro').onchange=ev=>{V.centro=ev.target.value;saveV();renderReg()};
+$('rActivo').addEventListener('change',()=>{const a=$('rActivo').value.trim().toUpperCase();
+  for(const e of DATA.equipos){const f=(e.activos||[]).find(x=>x.numero===a);
+    if(f){if(f.centro&&f.centro!==V.centro){V.centro=f.centro;saveV()}if(e.id!==eq().id){V.current=e.id;saveV();renderAll();$('rActivo').value=a}else renderReg();return}}});
+$('btnHist').onclick=loadHist;
 
 $('eqSelect').onchange=ev=>{V.current=ev.target.value;saveV();renderAll()};
 $('eqModel').onchange=ev=>{V.model[eq().id]=ev.target.value;saveV();renderAll()};
@@ -100,7 +155,9 @@ $('btnClearSel').onclick=()=>{eq().piezas.forEach(p=>delete V.sel[p.id]);saveV()
 $('stage').addEventListener('click',ev=>{const pin=ev.target.closest('.pin');if(!pin)return;toggleSel(eq().piezas.find(p=>p.id===pin.dataset.id))});
 $('partRows').addEventListener('click',ev=>{const tr=ev.target.closest('[data-tog]')||ev.target.closest('tr.part');if(!tr)return;const id=tr.dataset.tog||tr.dataset.id;toggleSel(eq().piezas.find(p=>p.id===id))});
 
-fetch('equipos.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('HTTP '+r.status);return r.json()}).then(d=>{
+/* Busca los datos en datos/equipos.json y, si no está, en equipos.json en la raíz */
+const getJSON=u=>fetch(u,{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('HTTP '+r.status+' en '+u);return r.json()});
+getJSON('equipos.json').catch(()=>getJSON('datos/equipos.json')).then(d=>{
   if(!d||!Array.isArray(d.equipos)||!d.equipos.length)throw new Error('sin equipos');
   d.equipos.forEach(e=>{e.piezas=e.piezas||[];e.piezas.forEach((p,i)=>{if(!p.id)p.id=e.id+'-'+i})});
   DATA=d;$('loading').hidden=true;$('main').hidden=false;
@@ -108,6 +165,6 @@ fetch('equipos.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('HTTP
   renderAll();
 }).catch(err=>{
   $('loading').hidden=true;$('error').hidden=false;
-  $('error').textContent='No se pudieron cargar los datos de los equipos. Si acabas de editar equipos.json, revisa que no falte una coma o una llave. ('+err.message+')';
+  $('error').textContent='No se pudieron cargar los datos de los equipos. Si acabas de editar datos/equipos.json, revisa que no falte una coma o una llave. ('+err.message+')';
 });
 })();

@@ -104,6 +104,25 @@ textarea{font-family:var(--f-mono);font-size:12.5px}
       </section>
 
       <section class="panel">
+        <h2>Activos de este equipo por centro de trabajo</h2>
+        <p class="hint" style="margin:0">Uno por línea: número de activo, un guion y una descripción. Aparecen como sugerencia al registrar una reparación en ese centro.</p>
+        <div id="actBox" style="display:flex;flex-direction:column;gap:12px"></div>
+      </section>
+
+      <section class="panel">
+        <h2>Centros de trabajo</h2>
+        <p class="hint" style="margin:0">Uno por línea. Valen para todos los equipos.</p>
+        <textarea id="centrosTxt" rows="3"></textarea>
+      </section>
+
+      <section class="panel">
+        <h2>Historial de reparaciones</h2>
+        <p class="hint" style="margin:0">Pega aquí la dirección de la aplicación web de Google Apps Script (termina en <b>/exec</b>). Si la dejas vacía, la app no muestra el registro de reparaciones.</p>
+        <label class="f">Dirección del historial<input type="url" id="hURL" placeholder="https://script.google.com/macros/s/…/exec"></label>
+        <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn sm" id="btnTest">Probar conexión</button><span class="hint" id="testMsg"></span></div>
+      </section>
+
+      <section class="panel">
         <h2>Actualizar precios desde SAP</h2>
         <p class="hint" style="margin:0">Pega líneas copiadas de SAP o Excel (código, descripción y precio). La app busca cada código en las piezas de <b>todos</b> los equipos y cambia el precio.</p>
         <textarea id="sapTxt" rows="6" placeholder="2401000049	2002000069 ACOPLE HIERRO BARNES 22203 …	$ 619,629.55"></textarea>
@@ -141,6 +160,9 @@ function renderInfo(){
   const map={eqName:'nombre',eqLoc:'ubicacion',eqCur:'moneda',eqNew:'valorReposicion',eqTh:'umbral'};
   for(const [id,k] of Object.entries(map))if(document.activeElement!==$(id))$(id).value=e[k]??'';
   $('modelWrap').hidden=!e.modelos;
+  renderAct();
+  if(document.activeElement!==$('centrosTxt'))$('centrosTxt').value=centros().join('\n');
+  if(document.activeElement!==$('hURL'))$('hURL').value=D.historialURL||'';
   if(e.modelos)$('eqModel').innerHTML=e.modelos.map(x=>`<option ${x===e.modelo?'selected':''}>${esc(x)}</option>`).join('');
 }
 function imgSrc(e){return imgPreview[e.id]?imgPreview[e.id].url:e.plano}
@@ -205,6 +227,30 @@ $('eqSelect').onchange=ev=>{cur=ev.target.value;marking=false;renderAll()};
 $('eqModel').onchange=ev=>{eq().modelo=ev.target.value;changed();renderStage();renderParts()};
 const fmap={eqName:'nombre',eqLoc:'ubicacion',eqCur:'moneda',eqNew:'valorReposicion',eqTh:'umbral'};
 for(const [id,k] of Object.entries(fmap))$(id).addEventListener('input',()=>{const el=$(id);eq()[k]=el.type==='number'?n(el.value):el.value;changed();if(k==='nombre')renderSelect();if(k==='moneda')renderParts()});
+function centros(){return (Array.isArray(D.centros)&&D.centros.length)?D.centros:['Mina Providencia','Mina Sandra K','Mina Silencio']}
+const actLine=a=>a.numero+(a.descripcion?' - '+a.descripcion:'');
+function renderAct(){
+  if(document.activeElement&&document.activeElement.dataset&&document.activeElement.dataset.centro!==undefined)return;
+  const e=eq(),cs=centros(),acts=e.activos||[];
+  const groups=cs.map(c=>({c,items:acts.filter(a=>a.centro===c)}));
+  const loose=acts.filter(a=>!cs.includes(a.centro));
+  if(loose.length)groups.push({c:'',items:loose});
+  $('actBox').innerHTML=groups.map(g=>`<label class="f">${g.c?esc(g.c):'Sin centro asignado'}<textarea rows="3" data-centro="${esc(g.c)}" placeholder="10012345 - Descripción del activo">${esc(g.items.map(actLine).join('\n'))}</textarea></label>`).join('');
+}
+$('actBox').addEventListener('input',()=>{
+  const all=[];
+  $('actBox').querySelectorAll('textarea').forEach(t=>{const c=t.dataset.centro;
+    t.value.split(/\r?\n/).map(l=>l.trim()).filter(Boolean).forEach(l=>{const i=l.indexOf(' - ');
+      all.push(i<0?{numero:l.toUpperCase(),descripcion:'',centro:c}:{numero:l.slice(0,i).trim().toUpperCase(),descripcion:l.slice(i+3).trim(),centro:c})})});
+  eq().activos=all;changed()});
+$('actBox').addEventListener('focusout',()=>setTimeout(renderAct,0));
+$('centrosTxt').addEventListener('input',()=>{D.centros=$('centrosTxt').value.split(/\r?\n/).map(l=>l.trim()).filter(Boolean);changed()});
+$('centrosTxt').addEventListener('change',renderAct);
+$('hURL').addEventListener('input',()=>{D.historialURL=$('hURL').value.trim();changed()});
+$('btnTest').onclick=async()=>{const u=$('hURL').value.trim();if(!u){$('testMsg').textContent='Pega primero la dirección.';return}
+  $('testMsg').textContent='Probando…';
+  try{const r=await fetch(u+(u.includes('?')?'&':'?')+'activo=__prueba__',{cache:'no-store'});const d=await r.json();$('testMsg').textContent=d.ok?'Conexión correcta.':'Respondió, pero no como se esperaba.'}
+  catch(e){$('testMsg').textContent='No responde. Revisa que la implementación tenga acceso «Cualquier usuario».'}};
 $('zIn').onclick=()=>{zoom=Math.min(3,zoom+0.5);renderStage()};
 $('zOut').onclick=()=>{zoom=Math.max(1,zoom-0.5);renderStage()};
 $('btnMark').onclick=()=>{if(!eq().plano&&!imgPreview[eq().id]){toast('Primero sube un plano.');return}marking=!marking;renderStage()};

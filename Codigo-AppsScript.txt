@@ -1,0 +1,60 @@
+/* Historial de reparaciones – Evaluador de Reparación
+   Pega TODO este texto en Apps Script (Extensiones → Apps Script) de tu hoja de Google,
+   reemplazando lo que haya. Luego: Implementar → Nueva implementación → Aplicación web,
+   Ejecutar como: Yo · Quién tiene acceso: Cualquier usuario. */
+
+const HOJA = 'Historial';
+const COLUMNAS = ['Fecha', 'Activo', 'Equipo', 'EquipoId', 'OT', 'Responsable', 'Decision',
+  'Dictamen', 'TotalRepuestos', 'ValorReposicion', 'PctReposicion', 'UmbralPct', 'Piezas', 'Observaciones', 'CentroTrabajo'];
+
+function hoja_() {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  let sh = ss.getSheetByName(HOJA);
+  if (!sh) {
+    sh = ss.insertSheet(HOJA);
+    sh.appendRow(COLUMNAS);
+    sh.setFrozenRows(1);
+    sh.getRange('B:B').setNumberFormat('@'); // número de activo como texto
+  }
+  if (sh.getRange(1, COLUMNAS.length).getValue() !== COLUMNAS[COLUMNAS.length - 1]) {
+    sh.getRange(1, 1, 1, COLUMNAS.length).setValues([COLUMNAS]);
+  }
+  return sh;
+}
+
+function doPost(e) {
+  const lock = LockService.getScriptLock();
+  lock.waitLock(20000);
+  try {
+    const d = JSON.parse(e.postData.contents);
+    const activo = String(d.activo || '').trim().toUpperCase();
+    if (!activo) return json_({ ok: false, error: 'Falta el número de activo' });
+    hoja_().appendRow([
+      new Date(), "'" + activo, d.equipo || '', d.equipoId || '', d.ot || '', d.responsable || '',
+      d.decision || '', d.dictamen || '', Number(d.total) || 0, Number(d.valorReposicion) || 0,
+      d.pct === '' ? '' : Number(d.pct), Number(d.umbral) || 0, d.piezas || '', d.observaciones || '', d.centro || ''
+    ]);
+    return json_({ ok: true });
+  } finally {
+    lock.releaseLock();
+  }
+}
+
+function doGet(e) {
+  const activo = String((e.parameter || {}).activo || '').trim().toUpperCase();
+  const valores = hoja_().getDataRange().getValues();
+  valores.shift();
+  const filas = valores
+    .filter(r => String(r[1]).trim().toUpperCase() === activo)
+    .map(r => ({
+      fecha: r[0] instanceof Date ? r[0].toISOString() : String(r[0]),
+      activo: String(r[1]), equipo: r[2], ot: String(r[4]), responsable: r[5], decision: r[6],
+      dictamen: r[7], total: r[8], pct: r[10], piezas: r[12], observaciones: r[13], centro: r[14] || ''
+    }))
+    .reverse();
+  return json_({ ok: true, rows: filas });
+}
+
+function json_(o) {
+  return ContentService.createTextOutput(JSON.stringify(o)).setMimeType(ContentService.MimeType.JSON);
+}

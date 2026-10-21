@@ -1,0 +1,33 @@
+CÓMO ACTIVAR EL HISTORIAL DE REPARACIONES (una sola vez, ~10 minutos, desde el computador)
+
+A. Subir la app nueva a GitHub
+   1. Descomprime este ZIP en tu computador.
+   2. En GitHub: Add file → Upload files → arrastra index.html, app.js y editor.html → Commit changes.
+      (NO subas el ZIP ni estos .txt. NO hace falta subir equipos.json.)
+
+B. Crear la hoja del historial (Google, gratis)
+   1. Entra a sheets.new con tu cuenta de Google.
+      Si no tienes, créala en accounts.google.com → «Usar mi dirección de correo actual» con tu Hotmail.
+   2. Ponle nombre a la hoja: «Historial de reparaciones».
+   3. Menú Extensiones → Apps Script.
+   4. Borra lo que aparece y pega TODO el contenido de Codigo-AppsScript.txt. Guarda (ícono de disquete).
+   5. Botón azul Implementar → Nueva implementación → ruedita → Aplicación web.
+        Ejecutar como: Yo
+        Quién tiene acceso: Cualquier usuario
+      → Implementar → Autorizar acceso → elige tu cuenta → Configuración avanzada → Ir a … (no seguro) → Permitir.
+   6. Copia la «URL de la aplicación web» (termina en /exec).
+
+C. Conectar la app con el historial
+   1. Abre https://vasale8910-beep.github.io/evaluador-reparacion/editor.html
+   2. En «Historial de reparaciones» pega la URL y presiona «Probar conexión» (debe decir «Conexión correcta»).
+   3. En «Activos de este equipo por centro de trabajo» escribe las máquinas en la casilla
+      de su mina (Mina Providencia, Mina Sandra K o Mina Silencio), una por línea:
+        10012345 - BP-301 Bomba de drenaje nivel 4
+   4. Descargar equipos.json → súbelo a GitHub (Add file → Upload files → Commit changes).
+
+Si ya habías creado la hoja con el código anterior: vuelve a pegar Codigo-AppsScript.txt,
+guarda, y en Implementar → Gestionar implementaciones → lápiz → Versión: Nueva versión → Implementar.
+(La URL no cambia.)
+
+Listo: en la app aparece «Registrar reparación», con el centro de trabajo. Cada registro queda como una fila en tu hoja de Google,
+y «Ver historial del activo» muestra todas sus reparaciones y cuánto se ha gastado.

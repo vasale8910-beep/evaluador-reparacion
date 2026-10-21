@@ -63,6 +63,28 @@
         <div class="row" id="infoView"></div>
         <label class="f" id="modelWrap" hidden>Modelo<select id="eqModel"></select></label>
       </section>
+      <section class="panel" id="regPanel" hidden>
+        <h2>Registrar reparación</h2>
+        <div class="row">
+          <label class="f" style="grid-column:1/-1">Centro de trabajo<select id="rCentro"></select></label>
+          <label class="f">N° de activo<input type="text" id="rActivo" list="activosList" autocomplete="off" placeholder="Ej.: 10012345"></label>
+          <datalist id="activosList"></datalist>
+          <label class="f">OT / aviso SAP<input type="text" id="rOT" autocomplete="off"></label>
+          <label class="f">Responsable<input type="text" id="rResp" autocomplete="name"></label>
+          <label class="f">Decisión<select id="rDec"><option>Reparar</option><option>Reemplazar equipo</option><option>Pendiente</option></select></label>
+          <label class="f" style="grid-column:1/-1">Observaciones<textarea id="rObs" rows="2"></textarea></label>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+          <button class="btn primary" id="btnSave">Guardar en historial</button>
+          <button class="btn" id="btnHist">Ver historial del activo</button>
+          <span class="hint" id="rMsg"></span>
+        </div>
+      </section>
+      <section class="panel" id="histPanel" hidden>
+        <h2><span>Historial del activo</span><span class="muted num" id="histTitle" style="font-size:14px"></span></h2>
+        <div class="breakdown" id="histSum"></div>
+        <div class="tablewrap"><table><thead><tr><th>Fecha</th><th>Detalle</th><th style="text-align:right">Total</th></tr></thead><tbody id="histRows"></tbody></table></div>
+      </section>
       <p class="hint" id="updatedLbl" style="margin:0"></p>
     </div>
   </div>
