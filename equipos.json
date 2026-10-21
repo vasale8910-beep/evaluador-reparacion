@@ -18,7 +18,7 @@
     "750"
    ],
    "modelo": "400",
-   "plano": "planos/bomba-barnes-ge-2-5c-40-hp.jpg",
+   "plano": "bomba-barnes-ge-2-5c-40-hp.jpg",
    "piezas": [
     {
      "id": "p3revflu",
@@ -701,7 +701,7 @@
    "umbral": 50,
    "modelos": null,
    "modelo": null,
-   "plano": "planos/perforadora-rnp-rn-s83fx.jpg",
+   "plano": "perforadora-rnp-rn-s83fx.jpg",
    "piezas": [
     {
      "id": "vo2lra2x",
