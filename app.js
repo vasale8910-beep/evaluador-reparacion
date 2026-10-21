@@ -1,5 +1,5 @@
 /* Evaluador de Reparación — versión para GitHub Pages.
-   Los datos (equipos, piezas y precios) se leen de datos/equipos.json.
+   Los datos (equipos, piezas y precios) se leen de equipos.json.
    Para cambiar precios, edita ese archivo; no hace falta tocar este código. */
 (function(){
 const $=id=>document.getElementById(id);
@@ -100,7 +100,7 @@ $('btnClearSel').onclick=()=>{eq().piezas.forEach(p=>delete V.sel[p.id]);saveV()
 $('stage').addEventListener('click',ev=>{const pin=ev.target.closest('.pin');if(!pin)return;toggleSel(eq().piezas.find(p=>p.id===pin.dataset.id))});
 $('partRows').addEventListener('click',ev=>{const tr=ev.target.closest('[data-tog]')||ev.target.closest('tr.part');if(!tr)return;const id=tr.dataset.tog||tr.dataset.id;toggleSel(eq().piezas.find(p=>p.id===id))});
 
-fetch('datos/equipos.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('HTTP '+r.status);return r.json()}).then(d=>{
+fetch('equipos.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('HTTP '+r.status);return r.json()}).then(d=>{
   if(!d||!Array.isArray(d.equipos)||!d.equipos.length)throw new Error('sin equipos');
   d.equipos.forEach(e=>{e.piezas=e.piezas||[];e.piezas.forEach((p,i)=>{if(!p.id)p.id=e.id+'-'+i})});
   DATA=d;$('loading').hidden=true;$('main').hidden=false;
@@ -108,6 +108,6 @@ fetch('datos/equipos.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error
   renderAll();
 }).catch(err=>{
   $('loading').hidden=true;$('error').hidden=false;
-  $('error').textContent='No se pudieron cargar los datos de los equipos. Si acabas de editar datos/equipos.json, revisa que no falte una coma o una llave. ('+err.message+')';
+  $('error').textContent='No se pudieron cargar los datos de los equipos. Si acabas de editar equipos.json, revisa que no falte una coma o una llave. ('+err.message+')';
 });
 })();
