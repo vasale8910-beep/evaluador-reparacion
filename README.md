@@ -1,73 +1,64 @@
-<!doctype html>
-<html lang="es">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Evaluador de Reparación</title>
-<meta name="description" content="Marca las piezas a reemplazar y revisa si la reparación del equipo es viable.">
-<meta name="theme-color" content="#1f5f8b">
-<link rel="manifest" href="manifest.webmanifest">
-<link rel="icon" type="image/png" href="icono-192.png">
-<link rel="apple-touch-icon" href="icono-192.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="estilos.css">
-</head>
-<body>
-<div class="wrap">
-  <header class="top">
-    <div>
-      <h1>Evaluador de Reparación</h1>
-      <p>Elige el equipo, marca las piezas a reemplazar y revisa si la reparación es viable.</p>
-    </div>
-    <div class="eqbar"><select id="eqSelect" aria-label="Equipo"></select></div>
-  </header>
-  <div id="loading" class="loading">Cargando equipos…</div>
-  <div id="error" class="errbox" hidden></div>
+# Evaluador de Reparación
 
-  <div class="grid" id="main" hidden>
-    <div class="col">
-      <section class="panel">
-        <h2><span>Plano del equipo</span></h2>
-        <div class="stage-tools">
-          <span class="zoom"><button class="btn sm" id="zOut" aria-label="Alejar">−</button><span class="num" id="zLbl">100%</span><button class="btn sm" id="zIn" aria-label="Acercar">+</button></span>
-          <span class="hint">Toca un número para marcar o desmarcar la pieza.</span>
-        </div>
-        <div class="stage" id="stage"></div>
-        <div class="legend">
-          <span><i style="background:var(--bad)"></i>A reemplazar</span>
-          <span><i style="background:#5f6b74"></i>No se reemplaza</span>
-        </div>
-      </section>
+App web gratuita para decidir si conviene reparar un equipo: se eligen las piezas a reemplazar sobre el plano y la app compara el costo con el valor del equipo nuevo.
 
-      <section class="panel">
-        <h2><span>Piezas y repuestos</span><span class="muted num" id="partCount" style="font-size:14px"></span></h2>
-        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:13px" class="muted">Ordenar por
-          <div class="seg" id="sortSeg" style="min-width:220px"><button type="button" data-s="tag">N° plano</button><button type="button" data-s="code">N° de parte</button></div>
-          <button class="btn sm" id="btnClearSel">Desmarcar todo</button>
-        </div>
-        <div class="tablewrap">
-          <table>
-            <thead><tr><th>#</th><th>Pieza</th><th></th><th class="r">Costo</th></tr></thead>
-            <tbody id="partRows"></tbody>
-          </table>
-        </div>
-      </section>
-    </div>
+- **App:** `index.html`, `app.js`, `estilos.css`
+- **Datos (lo único que se edita):** `datos/equipos.json`
+- **Planos:** carpeta `planos/`
 
-    <div class="col">
-      <section class="verdict" id="verdict" aria-live="polite"></section>
-      <section class="panel">
-        <h2>Datos del equipo</h2>
-        <div class="row" id="infoView"></div>
-        <label class="f" id="modelWrap" hidden>Modelo<select id="eqModel"></select></label>
-      </section>
-      <p class="hint" id="updatedLbl" style="margin:0"></p>
-    </div>
-  </div>
-</div>
-<div class="dock" id="dock"></div>
-<script src="app.js"></script>
-</body>
-</html>
+---
+
+## 1. Publicarla por primera vez (una sola vez, desde el computador)
+
+1. Entra a **github.com** → *Sign up* y crea la cuenta con tu correo de Hotmail. Elige el plan **Free**.
+2. Arriba a la derecha, **+** → **New repository**.
+   - Nombre: `evaluador-reparacion`
+   - Marca **Public**. Con la cuenta gratis, GitHub Pages solo publica repositorios públicos.
+   - Presiona **Create repository**.
+3. En el repositorio nuevo, toca el enlace **uploading an existing file**.
+4. Descomprime el ZIP en tu computador y **arrastra todo el contenido de la carpeta** (los archivos y las carpetas `datos` y `planos`) a la página de GitHub. Luego presiona **Commit changes**.
+5. Ve a **Settings** → **Pages**.
+   - En *Source* elige **Deploy from a branch**.
+   - En *Branch* elige **main** y **/(root)**, y presiona **Save**.
+6. Espera uno o dos minutos y recarga esa misma página. Arriba aparece el enlace de la app:
+   `https://TU-USUARIO.github.io/evaluador-reparacion/`
+
+Ese enlace es el que compartes con todo el equipo.
+
+## 2. Instalarla en el celular
+
+- **Android (Chrome):** abre el enlace → menú **⋮** → **Instalar app** o **Agregar a la pantalla principal**.
+- **iPhone (Safari):** abre el enlace → botón **Compartir** → **Agregar a inicio**.
+
+Queda con su ícono, como cualquier app, y siempre muestra los precios más recientes.
+
+## 3. Cambiar un precio
+
+1. En GitHub, abre `datos` → `equipos.json`.
+2. Toca el **lápiz** (Edit this file).
+3. Busca la pieza con **Ctrl + F** (por ejemplo `RN-S53F-36A`) y cambia el número que está después de `"precio":`.
+   - Sin signo `$` y sin puntos de miles. Los decimales van con punto: `207619.99`
+4. Cambia también `"actualizado"` (arriba del archivo) por la fecha de hoy, por ejemplo `"2026-11-03"`.
+5. Presiona **Commit changes** → **Commit changes**.
+6. En uno o dos minutos todos ven el precio nuevo al abrir la app.
+
+Otros datos que puedes cambiar del mismo modo:
+
+| Campo | Qué es | Ejemplo |
+|---|---|---|
+| `"valorReposicion"` | Valor del equipo nuevo | `18995292` |
+| `"umbral"` | % máximo de reparación frente al equipo nuevo | `60` |
+| `"cantidad"` | Unidades de la pieza | `2` |
+| `"precio": 0` | Oculta la pieza: las piezas sin precio no se muestran | `0` |
+
+> Si después de un cambio la app dice que no pudo cargar los datos, casi siempre falta una coma o sobra una. En GitHub abre el archivo → **History** → abre la versión anterior para comparar, o pídele a Claude que lo revise pegando el archivo.
+
+## 4. Agregar un equipo nuevo
+
+Sube el plano a la carpeta `planos/` y pásale a Claude la lista de piezas con precios. Te devolverá el `equipos.json` actualizado, con los números marcados en el plano, para que lo reemplaces con **Add file → Upload files**.
+
+## Quién puede cambiar qué
+
+- **Ver y usar la app:** cualquiera que tenga el enlace. No necesita cuenta.
+- **Cambiar precios, piezas o equipos:** solo tú, con tu cuenta de GitHub.
+- Lo que cada persona marca se guarda solo en su celular y no afecta a los demás.
