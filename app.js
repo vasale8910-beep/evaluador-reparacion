@@ -20,8 +20,23 @@ function visible(e){
   const v=e.piezas.filter(p=>inModel(p,e)&&n(p.precio)>0);
   const t=p=>{const x=parseFloat(p.plano);return isFinite(x)?x:1e9};
   const c=p=>String(p.codigo||'').replace(/^REF\s*/,'');
-  return v.slice().sort(V.sortBy==='code'?(a,b)=>c(a).localeCompare(c(b),'es',{numeric:true}):(a,b)=>t(a)-t(b));
+  return v.slice().sort(V.sortBy==='code'?(a,b)=>codeKey(a).localeCompare(codeKey(b),'es',{numeric:true})
+    :V.sortBy==='price'?(a,b)=>n(b.precio)-n(a.precio):(a,b)=>t(a)-t(b));
 }
+/* Código principal de la pieza: el primer número largo (SAP); si no hay, el número REF */
+function codeKey(p){const c=String(p.codigo||'');const m=c.match(/\d{6,}/);if(m)return m[0];const r=c.replace(/^REF\s*/,'').split(/[\s·]/)[0];return r||'~'}
+const norm=s=>String(s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+let Q='';
+function listed(e){
+  let v=visible(e);
+  if(V.only==='sel')v=v.filter(isSel);
+  const q=norm(Q).trim();if(!q)return v;
+  const words=q.split(/\s+/);
+  return v.filter(p=>{const hay=norm(p.nombre+' '+p.codigo+' '+codeKey(p));
+    return words.every(w=>hay.includes(w)||(/^\d+$/.test(w)&&String(p.plano)===w))});
+}
+function hl(text){const q=norm(Q).trim();if(!q)return esc(text);let out=esc(text);
+  q.split(/\s+/).filter(w=>w.length>1).forEach(w=>{const i=norm(text).indexOf(w);if(i>=0){const raw=String(text).substr(i,w.length);out=out.replace(esc(raw),'<mark>'+esc(raw)+'</mark>')}});return out}
 const isSel=p=>!!V.sel[p.id];
 function toggleSel(p){if(isSel(p))delete V.sel[p.id];else V.sel[p.id]=true;saveV();renderStage();renderParts();renderVerdict()}
 
@@ -52,17 +67,23 @@ function renderStage(){
   st.innerHTML=`<div class="canvas" style="width:${V.zoom*100}%"><img src="${esc(e.plano)}" onerror="if(!this.dataset.f){this.dataset.f=1;this.src=this.getAttribute('src').split('/').pop()}" alt="Plano de ${esc(e.nombre)}" draggable="false">${pins}</div>`;
 }
 function renderParts(){
-  const e=eq(),vis=visible(e),cur=e.moneda;
+  const e=eq(),all=visible(e),vis=listed(e),cur=e.moneda;
   [...$('sortSeg').children].forEach(b=>b.setAttribute('aria-pressed',b.dataset.s===V.sortBy));
-  const sel=vis.filter(isSel).length;
-  $('partCount').textContent=vis.length?`${sel} de ${vis.length} a reemplazar`:'';
+  [...$('viewSeg').children].forEach(b=>b.setAttribute('aria-pressed',b.dataset.v===(V.only||'all')));
+  $('qClear').hidden=!Q;
+  const sel=all.filter(isSel).length;
+  $('partCount').textContent=all.length?`${sel} de ${all.length} a reemplazar`+(vis.length!==all.length?` · mostrando ${vis.length}`:''):'';
   $('btnClearSel').hidden=!sel;
-  if(!vis.length){$('partRows').innerHTML='<tr><td colspan="4" class="muted" style="padding:18px 6px">Este equipo aún no tiene piezas con precio.</td></tr>';return}
+  if(!all.length){$('partRows').innerHTML='<tr><td colspan="4" class="muted" style="padding:18px 6px">Este equipo aún no tiene piezas con precio.</td></tr>';return}
+  if(!vis.length){$('partRows').innerHTML=`<tr><td colspan="4" class="muted" style="padding:18px 6px">${V.only==='sel'&&!Q?'Aún no marcas piezas para reemplazar.':'Ningún repuesto coincide con «'+esc(Q)+'».'}</td></tr>`;return}
+  let lastG=null;
   $('partRows').innerHTML=vis.map(p=>{const q=qtyOf(p,e),pr=n(p.precio),on=isSel(p);
     const cost=on?'<b>'+money(pr*q,cur)+'</b>':'<span class="muted">'+money(pr*q,cur)+'</span>';
-    return `<tr class="part" data-id="${esc(p.id)}">
+    let head='';
+    if(V.sortBy==='code'){const g=codeKey(p).slice(0,4);if(g!==lastG){lastG=g;const cnt=vis.filter(x=>codeKey(x).slice(0,4)===g).length;head=`<tr class="grp"><td colspan="4">Código ${esc(g)}… · ${cnt} ${cnt===1?'pieza':'piezas'}</td></tr>`}}
+    return head+`<tr class="part${on?' on':''}" data-id="${esc(p.id)}">
       <td><span class="badge" style="border-color:var(--line)">${esc(p.plano||'·')}</span></td>
-      <td style="min-width:130px"><div class="pname">${esc(p.nombre)}</div><div class="psub">Cant. ${q}${p.codigo?' · '+esc(p.codigo):''}</div><div class="mcost num">${cost}</div></td>
+      <td style="min-width:130px"><div class="pname">${hl(p.nombre)}</div><div class="psub">Cant. ${q}${p.codigo?' · '+hl(p.codigo):''}</div><div class="mcost num">${cost}</div></td>
       <td><button type="button" class="rbtn" data-tog="${esc(p.id)}" aria-pressed="${on}">${on?'✓ Reemplazar':'Reemplazar'}</button></td>
       <td class="r num">${cost}</td></tr>`}).join('');
 }
@@ -95,7 +116,10 @@ function renderAll(){renderEqSelect();renderInfo();renderStage();renderParts();r
 const HURL=()=>String(DATA.historialURL||'').trim();
 const CENTROS=()=>(Array.isArray(DATA.centros)&&DATA.centros.length)?DATA.centros:['Mina Providencia','Mina Sandra K','Mina Silencio'];
 function renderReg(){
-  const on=!!HURL();$('regPanel').hidden=!on;if(!on){$('histPanel').hidden=true;return}
+  const on=!!HURL();$('regPanel').hidden=!on;$('expPanel').hidden=!on;if(!on){$('histPanel').hidden=true;return}
+  const xc=$('xCentro').value,xe=$('xEquipo').value;
+  $('xCentro').innerHTML='<option value="">Todos</option>'+CENTROS().map(c=>`<option ${c===xc?'selected':''}>${esc(c)}</option>`).join('');
+  $('xEquipo').innerHTML='<option value="">Todos</option>'+DATA.equipos.map(e=>`<option value="${esc(e.id)}" ${e.id===xe?'selected':''}>${esc(e.nombre)}</option>`).join('');
   const cs=CENTROS();if(!cs.includes(V.centro))V.centro=cs[0];
   $('rCentro').innerHTML=cs.map(c=>`<option ${c===V.centro?'selected':''}>${esc(c)}</option>`).join('');
   const e=eq();$('activosList').innerHTML=(e.activos||[]).filter(a=>!a.centro||a.centro===V.centro).map(a=>`<option value="${esc(a.numero)}">${esc(a.descripcion||'')}</option>`).join('');
@@ -140,6 +164,47 @@ async function loadHist(){
   }catch(err){$('histRows').innerHTML='<tr><td colspan="3" class="muted">No se pudo leer el historial. Revisa la conexión.</td></tr>'}
 }
 $('btnSave').onclick=saveHist;
+function loadXLSX(){return window.XLSX?Promise.resolve(window.XLSX):new Promise((ok,ko)=>{const sc=document.createElement('script');
+  sc.src='https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js';sc.onload=()=>ok(window.XLSX);sc.onerror=()=>ko(new Error('xlsx'));document.head.appendChild(sc)})}
+function xmsg(t,bad){$('xMsg').textContent=t;$('xMsg').style.color=bad?'var(--bad)':''}
+$('btnExport').onclick=async()=>{
+  xmsg('Leyendo historial…');$('btnExport').disabled=true;
+  try{
+    const r=await fetch(HURL()+(HURL().includes('?')?'&':'?')+'todos=1',{cache:'no-store'});const d=await r.json();
+    if(!d.version){xmsg('Actualiza el código de Apps Script a la versión nueva para poder descargar todo el historial.',true);return}
+    const c=$('xCentro').value,eid=$('xEquipo').value,de=$('xDesde').value,ha=$('xHasta').value;
+    const rows=(d.rows||[]).filter(x=>{const f=String(x.fecha).slice(0,10);
+      return (!c||x.centro===c)&&(!eid||x.equipoId===eid)&&(!de||f>=de)&&(!ha||f<=ha)});
+    if(!rows.length){xmsg('No hay reparaciones con esos filtros.',true);return}
+    const det=rows.map(x=>({'Fecha':new Date(x.fecha),'Centro de trabajo':x.centro||'','N° activo':String(x.activo),'Equipo':x.equipo,'OT / aviso':x.ot||'',
+      'Responsable':x.responsable||'','Decisión':x.decision||'','Dictamen':x.dictamen||'','Total repuestos':n(x.total),'Valor reposición':n(x.valorReposicion),
+      '% de reposición':x.pct===''?'':n(x.pct)/100,'Umbral %':n(x.umbral)/100,'Piezas':x.piezas||'','Observaciones':x.observaciones||''}));
+    const byA={};rows.forEach(x=>{const k=x.activo+'|'+(x.centro||'');const a=byA[k]||(byA[k]={'Centro de trabajo':x.centro||'','N° activo':String(x.activo),'Equipo':x.equipo,'Reparaciones':0,'Total gastado':0,'Valor reposición':n(x.valorReposicion),'Última reparación':null});
+      a['Reparaciones']++;a['Total gastado']+=n(x.total);const f=new Date(x.fecha);if(!a['Última reparación']||f>a['Última reparación'])a['Última reparación']=f});
+    const resA=Object.values(byA).map(a=>Object.assign(a,{'% del equipo nuevo':a['Valor reposición']?a['Total gastado']/a['Valor reposición']:''})).sort((a,b)=>b['Total gastado']-a['Total gastado']);
+    const byC={};rows.forEach(x=>{const k=x.centro||'Sin centro';const a=byC[k]||(byC[k]={'Centro de trabajo':k,'Reparaciones':0,'Activos distintos':new Set(),'Total gastado':0});a['Reparaciones']++;a['Activos distintos'].add(x.activo);a['Total gastado']+=n(x.total)});
+    const resC=Object.values(byC).map(a=>Object.assign(a,{'Activos distintos':a['Activos distintos'].size}));
+    let XL;try{XL=await loadXLSX()}catch(e){XL=null}
+    const stamp=new Date().toISOString().slice(0,10);
+    if(XL){
+      const wb=XL.utils.book_new();
+      const add=(data,name,widths,money,pct)=>{const ws=XL.utils.json_to_sheet(data,{cellDates:true});ws['!cols']=widths.map(w=>({wch:w}));
+        const rg=XL.utils.decode_range(ws['!ref']);const hdr=Object.keys(data[0]);
+        for(let R=1;R<=rg.e.r;R++)hdr.forEach((h,C)=>{const cell=ws[XL.utils.encode_cell({r:R,c:C})];if(!cell)return;
+          if(money.includes(h)&&cell.t==='n')cell.z='"$"#,##0';if(pct.includes(h)&&cell.t==='n')cell.z='0.0%';if(cell.t==='d')cell.z='dd/mm/yyyy'});
+        XL.utils.book_append_sheet(wb,ws,name)};
+      add(det,'Detalle',[12,18,14,30,14,18,16,12,16,16,14,10,60,40],['Total repuestos','Valor reposición'],['% de reposición','Umbral %']);
+      add(resA,'Resumen por activo',[18,14,30,13,16,16,16,16],['Total gastado','Valor reposición'],['% del equipo nuevo']);
+      add(resC,'Resumen por centro',[20,13,16,16],['Total gastado'],[]);
+      XL.writeFile(wb,`historial-costos-${stamp}.xlsx`);
+    }else{
+      const hdr=Object.keys(det[0]);const csv=[hdr.join(';')].concat(det.map(o=>hdr.map(h=>{let v=o[h];if(v instanceof Date)v=v.toLocaleDateString('es-CO');return '"'+String(v).replace(/"/g,'""')+'"'}).join(';'))).join('\r\n');
+      const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['\ufeff'+csv],{type:'text/csv'}));a.download=`historial-costos-${stamp}.csv`;document.body.appendChild(a);a.click();a.remove();
+    }
+    xmsg(`Descargadas ${rows.length} reparaciones.`);
+  }catch(err){xmsg('No se pudo leer el historial. Revisa la conexión.',true)}
+  finally{$('btnExport').disabled=false}
+};
 $('rCentro').onchange=ev=>{V.centro=ev.target.value;saveV();renderReg()};
 $('rActivo').addEventListener('change',()=>{const a=$('rActivo').value.trim().toUpperCase();
   for(const e of DATA.equipos){const f=(e.activos||[]).find(x=>x.numero===a);
@@ -151,6 +216,9 @@ $('eqModel').onchange=ev=>{V.model[eq().id]=ev.target.value;saveV();renderAll()}
 $('zIn').onclick=()=>{V.zoom=Math.min(3,+(V.zoom+0.5).toFixed(1));saveV();renderStage()};
 $('zOut').onclick=()=>{V.zoom=Math.max(1,+(V.zoom-0.5).toFixed(1));saveV();renderStage()};
 $('sortSeg').addEventListener('click',ev=>{const b=ev.target.closest('button');if(!b)return;V.sortBy=b.dataset.s;saveV();renderParts()});
+$('q').addEventListener('input',ev=>{Q=ev.target.value;renderParts()});
+$('qClear').onclick=()=>{Q='';$('q').value='';renderParts();$('q').focus()};
+$('viewSeg').addEventListener('click',ev=>{const b=ev.target.closest('button');if(!b)return;V.only=b.dataset.v;saveV();renderParts()});
 $('btnClearSel').onclick=()=>{eq().piezas.forEach(p=>delete V.sel[p.id]);saveV();renderStage();renderParts();renderVerdict()};
 $('stage').addEventListener('click',ev=>{const pin=ev.target.closest('.pin');if(!pin)return;toggleSel(eq().piezas.find(p=>p.id===pin.dataset.id))});
 $('partRows').addEventListener('click',ev=>{const tr=ev.target.closest('[data-tog]')||ev.target.closest('tr.part');if(!tr)return;const id=tr.dataset.tog||tr.dataset.id;toggleSel(eq().piezas.find(p=>p.id===id))});

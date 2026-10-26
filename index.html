@@ -44,9 +44,14 @@
       <section class="panel">
         <h2><span>Piezas y repuestos</span><span class="muted num" id="partCount" style="font-size:14px"></span></h2>
         <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:13px" class="muted">Ordenar por
-          <div class="seg" id="sortSeg" style="min-width:220px"><button type="button" data-s="tag">N° plano</button><button type="button" data-s="code">N° de parte</button></div>
+          <div class="seg seg3" id="sortSeg"><button type="button" data-s="tag">N° plano</button><button type="button" data-s="code">Código</button><button type="button" data-s="price">Precio</button></div>
           <button class="btn sm" id="btnClearSel">Desmarcar todo</button>
         </div>
+        <div class="search">
+          <input type="search" id="q" placeholder="Buscar: nombre, código (1601) o N° plano" autocomplete="off" aria-label="Buscar repuesto">
+          <button type="button" class="btn sm" id="qClear" hidden>Limpiar</button>
+        </div>
+        <div class="seg" id="viewSeg" style="max-width:260px"><button type="button" data-v="all">Todas</button><button type="button" data-v="sel">Solo marcadas</button></div>
         <div class="tablewrap">
           <table>
             <thead><tr><th>#</th><th>Pieza</th><th></th><th class="r">Costo</th></tr></thead>
@@ -78,6 +83,20 @@
           <button class="btn primary" id="btnSave">Guardar en historial</button>
           <button class="btn" id="btnHist">Ver historial del activo</button>
           <span class="hint" id="rMsg"></span>
+        </div>
+      </section>
+      <section class="panel" id="expPanel" hidden>
+        <h2>Historial de costos</h2>
+        <p class="hint" style="margin:0">Descarga en Excel todas las reparaciones registradas, con resumen por activo y por centro de trabajo.</p>
+        <div class="row">
+          <label class="f">Centro de trabajo<select id="xCentro"></select></label>
+          <label class="f">Equipo<select id="xEquipo"></select></label>
+          <label class="f">Desde<input type="date" id="xDesde"></label>
+          <label class="f">Hasta<input type="date" id="xHasta"></label>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+          <button class="btn primary" id="btnExport">Descargar historial (Excel)</button>
+          <span class="hint" id="xMsg"></span>
         </div>
       </section>
       <section class="panel" id="histPanel" hidden>
