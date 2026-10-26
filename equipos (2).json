@@ -1,0 +1,1578 @@
+{
+ "actualizado": "2026-10-26",
+ "equipos": [
+  {
+   "id": "yz79as3h",
+   "nombre": "Bomba Barnes GE 2,5C 40 HP",
+   "ubicacion": "",
+   "moneda": "COP",
+   "valorReposicion": 18995292,
+   "umbral": 60,
+   "modelos": [
+    "200",
+    "250",
+    "300",
+    "400",
+    "500",
+    "600",
+    "750"
+   ],
+   "modelo": "400",
+   "plano": "bomba-barnes-ge-2-5c-40-hp.jpg",
+   "piezas": [
+    {
+     "id": "p3revflu",
+     "plano": "1",
+     "nombre": "Acople en hierro",
+     "codigo": "REF 22202",
+     "cantidad": 1,
+     "cantidadPorModelo": {
+      "200": 1,
+      "250": 1
+     },
+     "precio": 0,
+     "x": 55.4,
+     "y": 13.9
+    },
+    {
+     "id": "cb3t0ajh",
+     "plano": "1",
+     "nombre": "Acople en hierro",
+     "codigo": "REF 22203 · 2401000049 · 2002000069",
+     "cantidad": 1,
+     "cantidadPorModelo": {
+      "300": 1,
+      "400": 1,
+      "500": 1,
+      "600": 1,
+      "750": 1
+     },
+     "precio": 619629.55,
+     "x": 55.4,
+     "y": 13.9
+    },
+    {
+     "id": "qjl5rvkv",
+     "plano": "2",
+     "nombre": "Cuerpo en hierro (voluta)",
+     "codigo": "REF 31461 · 2401000057 · 2002000081",
+     "cantidad": 1,
+     "cantidadPorModelo": {
+      "200": 1,
+      "250": 1,
+      "300": 1,
+      "400": 1,
+      "500": 1,
+      "600": 1,
+      "750": 1
+     },
+     "precio": 1480000,
+     "x": 69.5,
+     "y": 53.8
+    },
+    {
+     "id": "b39e1dk9",
+     "plano": "3",
+     "nombre": "Base en lámina",
+     "codigo": "REF 19368",
+     "cantidad": 1,
+     "cantidadPorModelo": {
+      "200": 2,
+      "250": 2
+     },
+     "precio": 0,
+     "x": 10.9,
+     "y": 36
+    },
+    {
+     "id": "m3wr10y6",
+     "plano": "3",
+     "nombre": "Base en lámina",
+     "codigo": "REF 30177",
+     "cantidad": 1,
+     "cantidadPorModelo": {
+      "300": 2
+     },
+     "precio": 0,
+     "x": 10.9,
+     "y": 36
+    },
+    {
+     "id": "wtabjebd",
+     "plano": "4",
+     "nombre": "Impulsor ø6,500\"",
+     "codigo": "REF 91650",
+     "cantidad": 1,
+     "cantidadPorModelo": {
+      "200": 1
+     },
+     "precio": 0,
+     "x": 84.1,
+     "y": 28.3
+    },
+    {
+     "id": "64y9kz27",
+     "plano": "4",
+     "nombre": "Impulsor ø7,000\"",
+     "codigo": "REF 91700",
+     "cantidad": 1,
+     "cantidadPorModelo": {
+      "250": 1
+     },
+     "precio": 0,
+     "x": 84.1,
+     "y": 28.3
+    },
+    {
+     "id": "lls9nise",
+     "plano": "4",
+     "nombre": "Impulsor ø7,500\"",
+     "codigo": "REF 91750",
+     "cantidad": 1,
+     "cantidadPorModelo": {
+      "300": 1
+     },
+     "precio": 0,
+     "x": 84.1,
+     "y": 28.3
+    },
+    {
+     "id": "cybjagwx",
+     "plano": "4",
+     "nombre": "Impulsor ø8,000\"",
+     "codigo": "REF 91800 · 2401000055 · 2002000075",
+     "cantidad": 1,
+     "cantidadPorModelo": {
+      "400": 1
+     },
+     "precio": 574003.87,
+     "x": 84.1,
+     "y": 28.3
+    },
+    {
+     "id": "apcwm6ze",
+     "plano": "4",
+     "nombre": "Impulsor ø8,500\"",
+     "codigo": "REF 91850",
+     "cantidad": 1,
+     "cantidadPorModelo": {
+      "500": 1
+     },
+     "precio": 0,
+     "x": 84.1,
+     "y": 28.3
+    },
+    {
+     "id": "5hlh6qi0",
+     "plano": "4",
+     "nombre": "Impulsor ø9,000\"",
+     "codigo": "REF 91900",
+     "cantidad": 1,
+     "cantidadPorModelo": {
+      "600": 1
+     },
+     "precio": 0,
+     "x": 84.1,
+     "y": 28.3
+    },
+    {
+     "id": "q6ufte4l",
+     "plano": "4",
+     "nombre": "Impulsor ø9,600\"",
+     "codigo": "REF 53311",
+     "cantidad": 1,
+     "cantidadPorModelo": {
+      "750": 1
+     },
+     "precio": 0,
+     "x": 84.1,
+     "y": 28.3
+    },
+    {
+     "id": "82g753bm",
+     "plano": "5",
+     "nombre": "Motor 20 HP 254JM",
+     "codigo": "REF 25000013957",
+     "cantidad": 1,
+     "cantidadPorModelo": {
+      "200": 1
+     },
+     "precio": 0,
+     "x": 35.9,
+     "y": 8.1
+    },
+    {
+     "id": "9hd39mvw",
+     "plano": "5",
+     "nombre": "Motor 25 HP 256JM",
+     "codigo": "REF 25000013959",
+     "cantidad": 1,
+     "cantidadPorModelo": {
+      "250": 1
+     },
+     "precio": 0,
+     "x": 35.9,
+     "y": 8.1
+    },
+    {
+     "id": "fyyrrx9h",
+     "plano": "5",
+     "nombre": "Motor 30 HP 284JM",
+     "codigo": "REF 25000013968",
+     "cantidad": 1,
+     "cantidadPorModelo": {
+      "300": 1
+     },
+     "precio": 0,
+     "x": 35.9,
+     "y": 8.1
+    },
+    {
+     "id": "qvurjcyk",
+     "plano": "5",
+     "nombre": "Motor 40 HP 286JM",
+     "codigo": "REF 25000014704",
+     "cantidad": 1,
+     "cantidadPorModelo": {
+      "400": 1
+     },
+     "precio": 0,
+     "x": 35.9,
+     "y": 8.1
+    },
+    {
+     "id": "m8xbzn25",
+     "plano": "5",
+     "nombre": "Motor 50 HP 324JM",
+     "codigo": "REF 25000013967",
+     "cantidad": 1,
+     "cantidadPorModelo": {
+      "500": 1
+     },
+     "precio": 0,
+     "x": 35.9,
+     "y": 8.1
+    },
+    {
+     "id": "vzrn0wkd",
+     "plano": "5",
+     "nombre": "Motor 60 HP 326JM",
+     "codigo": "REF 25000014702",
+     "cantidad": 1,
+     "cantidadPorModelo": {
+      "600": 1
+     },
+     "precio": 0,
+     "x": 35.9,
+     "y": 8.1
+    },
+    {
+     "id": "1gh3hibs",
+     "plano": "5",
+     "nombre": "Motor 75 HP 365JM",
+     "codigo": "REF 26000011110",
+     "cantidad": 1,
+     "cantidadPorModelo": {
+      "750": 1
+     },
+     "precio": 0,
+     "x": 35.9,
+     "y": 8.1
+    },
+    {
+     "id": "vu5j1fx0",
+     "plano": "6",
+     "nombre": "Sello mecánico 1-3/4\"",
+     "codigo": "REF 00033",
+     "cantidad": 1,
+     "cantidadPorModelo": {
+      "200": 1,
+      "250": 1,
+      "300": 1,
+      "400": 1,
+      "500": 1,
+      "600": 1,
+      "750": 1
+     },
+     "precio": 0,
+     "x": 36.4,
+     "y": 35.5
+    },
+    {
+     "id": "onk9vttk",
+     "plano": "7",
+     "nombre": "Camisa bomba GE 254 inox.",
+     "codigo": "REF 23869 · 2401000051 · 2002000071",
+     "cantidad": 1,
+     "cantidadPorModelo": {
+      "200": 1,
+      "250": 1,
+      "300": 1,
+      "400": 1,
+      "500": 1,
+      "600": 1,
+      "750": 1
+     },
+     "precio": 160190.17,
+     "x": 60.3,
+     "y": 16.6
+    },
+    {
+     "id": "fq3ocyvy",
+     "plano": "8",
+     "nombre": "Anillo Seeger ref A-45",
+     "codigo": "REF 17011 · 2401000052 · 2002000072",
+     "cantidad": 1,
+     "cantidadPorModelo": {
+      "200": 1,
+      "250": 1,
+      "300": 1,
+      "400": 1,
+      "500": 1,
+      "600": 1,
+      "750": 1
+     },
+     "precio": 36142.86,
+     "x": 64.5,
+     "y": 18.8
+    },
+    {
+     "id": "36n3y8tt",
+     "plano": "9",
+     "nombre": "Disco adaptador",
+     "codigo": "REF 24782 · 2401000053 · 2002000073",
+     "cantidad": 1,
+     "cantidadPorModelo": {
+      "200": 1,
+      "250": 1,
+      "300": 1,
+      "400": 1,
+      "500": 1,
+      "600": 1,
+      "750": 1
+     },
+     "precio": 423220,
+     "x": 45.6,
+     "y": 40.6
+    },
+    {
+     "id": "0jlpydsz",
+     "plano": "10",
+     "nombre": "Empaque papel \"B\"",
+     "codigo": "REF 30441 · 2401000050 · 2002000070",
+     "cantidad": 1,
+     "cantidadPorModelo": {
+      "200": 1,
+      "250": 1,
+      "300": 1,
+      "400": 1,
+      "500": 1,
+      "600": 1,
+      "750": 1
+     },
+     "precio": 24230,
+     "x": 57.2,
+     "y": 15
+    },
+    {
+     "id": "2uyog23e",
+     "plano": "11",
+     "nombre": "Empaque papel \"C\"",
+     "codigo": "REF 30442",
+     "cantidad": 1,
+     "cantidadPorModelo": {
+      "200": 1,
+      "250": 1,
+      "300": 1,
+      "400": 1,
+      "500": 1,
+      "600": 1,
+      "750": 1
+     },
+     "precio": 0,
+     "x": 78.3,
+     "y": 25
+    },
+    {
+     "id": "l7t3lnhj",
+     "plano": "12",
+     "nombre": "Arandela de caucho",
+     "codigo": "REF 05164",
+     "cantidad": 1,
+     "cantidadPorModelo": {
+      "200": 1,
+      "250": 1,
+      "300": 1,
+      "400": 1,
+      "500": 1,
+      "600": 1,
+      "750": 1
+     },
+     "precio": 0,
+     "x": 40.8,
+     "y": 7.2
+    },
+    {
+     "id": "z08n78o8",
+     "plano": "13",
+     "nombre": "Tornillo 3/8\" x 1\" NC",
+     "codigo": "REF 02037",
+     "cantidad": 1,
+     "cantidadPorModelo": {
+      "200": 6,
+      "250": 6,
+      "300": 6,
+      "400": 6,
+      "500": 6,
+      "600": 6,
+      "750": 6
+     },
+     "precio": 0,
+     "x": 47.3,
+     "y": 9.5
+    },
+    {
+     "id": "z1ansj24",
+     "plano": "14",
+     "nombre": "Arandela presión 3/8\"",
+     "codigo": "REF 02604",
+     "cantidad": 1,
+     "cantidadPorModelo": {
+      "200": 10,
+      "250": 10,
+      "300": 6,
+      "400": 6,
+      "500": 6,
+      "600": 6,
+      "750": 6
+     },
+     "precio": 0,
+     "x": 53.4,
+     "y": 12.9
+    },
+    {
+     "id": "tse3mbuf",
+     "plano": "15",
+     "nombre": "Tornillo 1/2\" x 1\" NC",
+     "codigo": "REF 28935",
+     "cantidad": 1,
+     "cantidadPorModelo": {
+      "200": 4,
+      "250": 4
+     },
+     "precio": 0,
+     "x": 33.2,
+     "y": 34.2
+    },
+    {
+     "id": "ft5nhos7",
+     "plano": "15",
+     "nombre": "Tornillo 5/8\" x 1\" NC",
+     "codigo": "REF 22844",
+     "cantidad": 1,
+     "cantidadPorModelo": {
+      "300": 4,
+      "400": 4,
+      "500": 4,
+      "600": 4,
+      "750": 4
+     },
+     "precio": 0,
+     "x": 33.2,
+     "y": 34.2
+    },
+    {
+     "id": "zjjwmn6l",
+     "plano": "16",
+     "nombre": "Tornillo 1/2\" x 1-1/4\" NC",
+     "codigo": "REF 02224",
+     "cantidad": 1,
+     "cantidadPorModelo": {
+      "200": 8,
+      "250": 8,
+      "300": 8,
+      "400": 8,
+      "500": 8,
+      "600": 8,
+      "750": 8
+     },
+     "precio": 0,
+     "x": 67.7,
+     "y": 20.7
+    },
+    {
+     "id": "u1viotm9",
+     "plano": "17",
+     "nombre": "Arandela presión 1/2\"",
+     "codigo": "REF 02608",
+     "cantidad": 1,
+     "cantidadPorModelo": {
+      "200": 8,
+      "250": 8,
+      "300": 8,
+      "400": 8,
+      "500": 8,
+      "600": 8,
+      "750": 8
+     },
+     "precio": 0,
+     "x": 69.7,
+     "y": 21.7
+    },
+    {
+     "id": "sfol3wf1",
+     "plano": "18",
+     "nombre": "Tapón de 1/4\" NPT",
+     "codigo": "REF 03201 · 2401000040 · 2002000057",
+     "cantidad": 1,
+     "cantidadPorModelo": {
+      "200": 5,
+      "250": 5,
+      "300": 5,
+      "400": 5,
+      "500": 5,
+      "600": 5,
+      "750": 5
+     },
+     "precio": 3330.79,
+     "x": 49.5,
+     "y": 10.7
+    },
+    {
+     "id": "1s66dlhk",
+     "plano": "19",
+     "nombre": "Tornillo 3/8\" x 1-1/2\" NC",
+     "codigo": "REF 02236",
+     "cantidad": 1,
+     "cantidadPorModelo": {
+      "200": 4,
+      "250": 4,
+      "300": 4,
+      "400": 4,
+      "500": 4,
+      "600": 4,
+      "750": 4
+     },
+     "precio": 0,
+     "x": 3.9,
+     "y": 32.6
+    },
+    {
+     "id": "kk5yofu2",
+     "plano": "20",
+     "nombre": "Arandela plana de 3/8\"",
+     "codigo": "REF 02553",
+     "cantidad": 1,
+     "cantidadPorModelo": {
+      "200": 4,
+      "250": 4,
+      "300": 4,
+      "400": 4,
+      "500": 4,
+      "600": 4,
+      "750": 4
+     },
+     "precio": 0,
+     "x": 7,
+     "y": 33.9
+    },
+    {
+     "id": "mf8626p7",
+     "plano": "21",
+     "nombre": "Tuerca hex 3/8\" NC",
+     "codigo": "REF 02502",
+     "cantidad": 1,
+     "cantidadPorModelo": {
+      "200": 4,
+      "250": 4,
+      "300": 4,
+      "400": 4,
+      "500": 4,
+      "600": 4,
+      "750": 4
+     },
+     "precio": 0,
+     "x": 18.1,
+     "y": 38.9
+    },
+    {
+     "id": "9g9sbgvr",
+     "plano": "22",
+     "nombre": "Arandela retención inox.",
+     "codigo": "REF 26819",
+     "cantidad": 1,
+     "cantidadPorModelo": {
+      "200": 1,
+      "250": 1,
+      "300": 1,
+      "400": 1,
+      "500": 1,
+      "600": 1,
+      "750": 1
+     },
+     "precio": 0,
+     "x": 89.1,
+     "y": 30.8
+    },
+    {
+     "id": "85r0cch4",
+     "plano": "23",
+     "nombre": "Tornillo 1/2\" x 1-1/4\" NC inox.",
+     "codigo": "REF 02226",
+     "cantidad": 1,
+     "cantidadPorModelo": {
+      "200": 1,
+      "250": 1,
+      "300": 1,
+      "400": 1,
+      "500": 1,
+      "600": 1,
+      "750": 1
+     },
+     "precio": 0,
+     "x": 61.7,
+     "y": 50
+    },
+    {
+     "id": "pv2tyejq",
+     "plano": "24",
+     "nombre": "Arandela presión 1/2\" inox.",
+     "codigo": "REF 02609",
+     "cantidad": 1,
+     "cantidadPorModelo": {
+      "200": 1,
+      "250": 1,
+      "300": 1,
+      "400": 1,
+      "500": 1,
+      "600": 1,
+      "750": 1
+     },
+     "precio": 0,
+     "x": 90.9,
+     "y": 32.2
+    },
+    {
+     "id": "4kgw140z",
+     "plano": "25",
+     "nombre": "Anillo de desgaste",
+     "codigo": "REF 30744 · 2401000056 · 2002000076",
+     "cantidad": 1,
+     "cantidadPorModelo": {
+      "200": 1,
+      "250": 1,
+      "300": 1,
+      "400": 1,
+      "500": 1,
+      "600": 1,
+      "750": 1
+     },
+     "precio": 172942.96,
+     "x": 64.9,
+     "y": 51.2
+    },
+    {
+     "id": "0pdqe84k",
+     "plano": "26",
+     "nombre": "Anillo \"O\" 2-028",
+     "codigo": "REF 17436",
+     "cantidad": 1,
+     "cantidadPorModelo": {
+      "200": 1,
+      "250": 1,
+      "300": 1,
+      "400": 1,
+      "500": 1,
+      "600": 1,
+      "750": 1
+     },
+     "precio": 0,
+     "x": null,
+     "y": null
+    }
+   ]
+  },
+  {
+   "id": "eyyyhf7m",
+   "nombre": "Perforadora RNP RN-S83FX",
+   "ubicacion": "",
+   "moneda": "COP",
+   "valorReposicion": 17343813,
+   "umbral": 50,
+   "modelos": null,
+   "modelo": null,
+   "plano": "perforadora-rnp-rn-s83fx.jpg",
+   "piezas": [
+    {
+     "id": "vo2lra2x",
+     "plano": "1",
+     "nombre": "FRENO 7/8in RNP RN-S53F-36A No1 [RN-S83FX][ROP1]",
+     "codigo": "1601000001",
+     "cantidad": 1,
+     "cantidadPorModelo": null,
+     "precio": 207619.99,
+     "x": 26.42,
+     "y": 13.13
+    },
+    {
+     "id": "pemw7lb0",
+     "plano": "3",
+     "nombre": "O-RING RNP RN-ORP-214B No3 [RN-S83FX][ROP1]",
+     "codigo": "1601000003",
+     "cantidad": 2,
+     "cantidadPorModelo": null,
+     "precio": 2509.4,
+     "x": 32.2,
+     "y": 11.17
+    },
+    {
+     "id": "hkt3lcxg",
+     "plano": "4",
+     "nombre": "TUERCA FRENO RNP RN-S53F-36N No4 [RN-S83FX][ROP1]",
+     "codigo": "1601000004",
+     "cantidad": 2,
+     "cantidadPorModelo": null,
+     "precio": 32873.26,
+     "x": 34.26,
+     "y": 14.66
+    },
+    {
+     "id": "gtd8wccv",
+     "plano": "5",
+     "nombre": "TROMPA RNP RN-S58F -17FC/1040906 No5 [RN-S83FX][ROP1]",
+     "codigo": "1601000005",
+     "cantidad": 1,
+     "cantidadPorModelo": null,
+     "precio": 2752404.76,
+     "x": 43.55,
+     "y": 10.06
+    },
+    {
+     "id": "z2a6j1do",
+     "plano": "6",
+     "nombre": "PIN RNP RN-S58F-36K/1053943 No6 [RN-S83FX][ROP1]",
+     "codigo": "1601000006",
+     "cantidad": 1,
+     "cantidadPorModelo": null,
+     "precio": 18403.76,
+     "x": 40.56,
+     "y": 24.02
+    },
+    {
+     "id": "bx87ztho",
+     "plano": "9",
+     "nombre": "PERNO GUIA RNP RN-S53F-36P/1036703/83008 No9 [RN-S83FX][ROP1]",
+     "codigo": "1601000007",
+     "cantidad": 1,
+     "cantidadPorModelo": null,
+     "precio": 54060.91,
+     "x": 45.92,
+     "y": 23.18
+    },
+    {
+     "id": "gp7yhgyo",
+     "plano": "11",
+     "nombre": "O-RING RNP RN-ORP-210B/83010 No11 [RN-S83FX][ROP1]",
+     "codigo": "1601000009",
+     "cantidad": 1,
+     "cantidadPorModelo": null,
+     "precio": 2528.37,
+     "x": 50.15,
+     "y": 24.58
+    },
+    {
+     "id": "66p4k4ct",
+     "plano": "12",
+     "nombre": "RETENEDOR RNP RN-S58F-36RA/1053971 No12 [RN-S83FX][ROP1]",
+     "codigo": "1601000010",
+     "cantidad": 1,
+     "cantidadPorModelo": null,
+     "precio": 71247.82,
+     "x": 52.22,
+     "y": 25
+    },
+    {
+     "id": "0kg5s5pg",
+     "plano": "13",
+     "nombre": "GRASERA RNP RN-Z1/83012 No13 [RN-S83FX][ROP1]",
+     "codigo": "1601000011",
+     "cantidad": 1,
+     "cantidadPorModelo": null,
+     "precio": 6047.17,
+     "x": 54.18,
+     "y": 24.72
+    },
+    {
+     "id": "p7hvpgju",
+     "plano": "15",
+     "nombre": "PORTABROQUERO RNP RN-S58F-7DA No15 [RN-S83FX][ROP1]",
+     "codigo": "1601000069",
+     "cantidad": 1,
+     "cantidadPorModelo": null,
+     "precio": 572342.48,
+     "x": 54.7,
+     "y": 11.87
+    },
+    {
+     "id": "w3i0zkqg",
+     "plano": "17",
+     "nombre": "BUJE CIL RNP RN-S83F-1B No17 [RN-S83FX][ROP1]",
+     "codigo": "1601000071",
+     "cantidad": 1,
+     "cantidadPorModelo": null,
+     "precio": 506397.16,
+     "x": 4.54,
+     "y": 31.01
+    },
+    {
+     "id": "7zd9s7k8",
+     "plano": "18",
+     "nombre": "BUJE BRONCE RNP RN-S53F-1L S83020 No18 [RN-S83FX][ROP1]",
+     "codigo": "1601000072",
+     "cantidad": 1,
+     "cantidadPorModelo": null,
+     "precio": 191528.13,
+     "x": 22.5,
+     "y": 40.92
+    },
+    {
+     "id": "58k6iol3",
+     "plano": "19",
+     "nombre": "PISTON RNP RN-S83F-9A S83021 No19 [RN-S83FX][ROP1]",
+     "codigo": "1601000073",
+     "cantidad": 1,
+     "cantidadPorModelo": null,
+     "precio": 549742.58,
+     "x": 25.39,
+     "y": 40.78
+    },
+    {
+     "id": "lu0cuwdp",
+     "plano": "20",
+     "nombre": "TUERCA PUNTA BARRA RNP RN-S83F-2528 S83022 No20 [RN-S83FX][ROP1]",
+     "codigo": "1601000074",
+     "cantidad": 1,
+     "cantidadPorModelo": null,
+     "precio": 142077.62,
+     "x": 30.03,
+     "y": 32.54
+    },
+    {
+     "id": "x3h8wp10",
+     "plano": "21",
+     "nombre": "CILINDRO RNP RN-S83F-1T [RN-S83FX][ROP2]",
+     "codigo": "1601000075",
+     "cantidad": 1,
+     "cantidadPorModelo": null,
+     "precio": 4060711.55,
+     "x": 15.27,
+     "y": 30.87
+    },
+    {
+     "id": "fj9p4pmy",
+     "plano": "22",
+     "nombre": "SELLO RNP RN-1S83F-715H No22 [RN-S83FX][ROP1]",
+     "codigo": "1601000076",
+     "cantidad": 2,
+     "cantidadPorModelo": null,
+     "precio": 28864.21,
+     "x": 21.36,
+     "y": 30.73
+    },
+    {
+     "id": "3yenpjan",
+     "plano": "26",
+     "nombre": "PIN RNP RN-S83F-15D No26 [RN-S83FX][ROP2]",
+     "codigo": "1601000080",
+     "cantidad": 4,
+     "cantidadPorModelo": null,
+     "precio": 14017.26,
+     "x": 43.45,
+     "y": 31.84
+    },
+    {
+     "id": "myzofqit",
+     "plano": "27",
+     "nombre": "BARRA ROTACION RNP RN-S83F-2628 No27 [RN-S83FX][ROP1]",
+     "codigo": "1601000081",
+     "cantidad": 1,
+     "cantidadPorModelo": null,
+     "precio": 312454.05,
+     "x": 45.51,
+     "y": 33.52
+    },
+    {
+     "id": "aisza4qt",
+     "plano": "28",
+     "nombre": "RESORTE RNP RN-7-11C No28 [RN-S83FX][ROP1]",
+     "codigo": "1601000082",
+     "cantidad": 4,
+     "cantidadPorModelo": null,
+     "precio": 3677.76,
+     "x": 48.5,
+     "y": 34.22
+    },
+    {
+     "id": "netd67ek",
+     "plano": "29",
+     "nombre": "PIN RNP RN-7-11B No29 [RN-S83FX][ROP1]",
+     "codigo": "1601000083",
+     "cantidad": 4,
+     "cantidadPorModelo": null,
+     "precio": 8596.74,
+     "x": 50.77,
+     "y": 33.38
+    },
+    {
+     "id": "iqwu6g0p",
+     "plano": "30",
+     "nombre": "TRINQUETE RNP RN-R91-11A No30 [RN-S83FX][ROP1]",
+     "codigo": "1601000084",
+     "cantidad": 4,
+     "cantidadPorModelo": null,
+     "precio": 23527.79,
+     "x": 48.09,
+     "y": 42.74
+    },
+    {
+     "id": "w6b9stbc",
+     "plano": "31",
+     "nombre": "RATCHET RNP RN-S83F-3335 No31 [RN-S83FX][ROP1]",
+     "codigo": "1601000085",
+     "cantidad": 1,
+     "cantidadPorModelo": null,
+     "precio": 234082.46,
+     "x": 53.46,
+     "y": 32.12
+    },
+    {
+     "id": "76q9ga2g",
+     "plano": "32",
+     "nombre": "CABEZA RNP RN-S63F2 No32 [RN-S83FX][ROP1]",
+     "codigo": "1601000012",
+     "cantidad": 1,
+     "cantidadPorModelo": null,
+     "precio": 4250859.03,
+     "x": 59.55,
+     "y": 29.89
+    },
+    {
+     "id": "v994thfw",
+     "plano": "34",
+     "nombre": "MANIJA RNP RN-S58F-12E No34 [RN-S83FX][ROP1]",
+     "codigo": "1601000014",
+     "cantidad": 1,
+     "cantidadPorModelo": null,
+     "precio": 259247.44,
+     "x": 58.1,
+     "y": 44.83
+    },
+    {
+     "id": "as0x0bdy",
+     "plano": "35",
+     "nombre": "ARANDELA RNP RN-WP-31 No35 [RN-S83FX][ROP2]",
+     "codigo": "1601000015",
+     "cantidad": 1,
+     "cantidadPorModelo": null,
+     "precio": 6792.6,
+     "x": 54.28,
+     "y": 41.9
+    },
+    {
+     "id": "9d87libq",
+     "plano": "36",
+     "nombre": "TUERCA RNP RN-S48F-12N No36 [RN-S83FX][ROP2]",
+     "codigo": "1601000016",
+     "cantidad": 1,
+     "cantidadPorModelo": null,
+     "precio": 25258.42,
+     "x": 53.35,
+     "y": 45.11
+    },
+    {
+     "id": "tb0lrtlp",
+     "plano": "38",
+     "nombre": "1608000018 PERNO POSICION RNP RN-7-2A No38 [RN-S83FX][ROP1]",
+     "codigo": "1601000018",
+     "cantidad": 1,
+     "cantidadPorModelo": null,
+     "precio": 7337.4,
+     "x": 56.14,
+     "y": 36.17
+    },
+    {
+     "id": "dl4aekr1",
+     "plano": "39",
+     "nombre": "EMPAQUE RNP RN-7-29B No39 [RN-S83FX][ROP1]",
+     "codigo": "1601000086",
+     "cantidad": 1,
+     "cantidadPorModelo": null,
+     "precio": 5655.01,
+     "x": 63.98,
+     "y": 40.78
+    },
+    {
+     "id": "6y9hn4m2",
+     "plano": "41",
+     "nombre": "TUBO AGUA RNP RN-S63F-27B No41 [RN-S83FX][ROP1]",
+     "codigo": "1601000088",
+     "cantidad": 1,
+     "cantidadPorModelo": null,
+     "precio": 53481.72,
+     "x": 73.68,
+     "y": 34.92
+    },
+    {
+     "id": "1lzsmjqd",
+     "plano": "43",
+     "nombre": "ASIENTO VALVULA RNP RN-D83N-45 No43 [RN-S83FX][ROP1]",
+     "codigo": "1601000038",
+     "cantidad": 1,
+     "cantidadPorModelo": null,
+     "precio": 5543.82,
+     "x": 85.45,
+     "y": 41.62
+    },
+    {
+     "id": "q9qizfjv",
+     "plano": "45",
+     "nombre": "O-RING RNP RN-OR-18 No45 [RN-S83FX][ROP1]",
+     "codigo": "1601000040",
+     "cantidad": 1,
+     "cantidadPorModelo": null,
+     "precio": 2229.96,
+     "x": 87.72,
+     "y": 42.32
+    },
+    {
+     "id": "yg54os78",
+     "plano": "46",
+     "nombre": "GLANDULA RNP RN-D83N-40 No46 [RN-S83FX][ROP1]",
+     "codigo": "1601000041",
+     "cantidad": 1,
+     "cantidadPorModelo": null,
+     "precio": 188331.29,
+     "x": 89.89,
+     "y": 42.6
+    },
+    {
+     "id": "cm53m7eb",
+     "plano": "47",
+     "nombre": "O-RING RNP RN-OR-3 No47 [RN-S83FX][ROP2]",
+     "codigo": "1601000042",
+     "cantidad": 1,
+     "cantidadPorModelo": null,
+     "precio": 2415.79,
+     "x": 91.54,
+     "y": 41.62
+    },
+    {
+     "id": "33av2yzx",
+     "plano": "48",
+     "nombre": "PISTON RNP RN-D83N-41 No48 [RN-S83FX][ROP1]",
+     "codigo": "1601000043",
+     "cantidad": 1,
+     "cantidadPorModelo": null,
+     "precio": 69715.78,
+     "x": 92.47,
+     "y": 34.92
+    },
+    {
+     "id": "oo4fk3z5",
+     "plano": "50",
+     "nombre": "RETENEDOR RNP RN-D83N-42 No50 [RN-S83FX][ROP1]",
+     "codigo": "1601000045",
+     "cantidad": 1,
+     "cantidadPorModelo": null,
+     "precio": 24395.63,
+     "x": 97.42,
+     "y": 42.6
+    },
+    {
+     "id": "j2i7qq0j",
+     "plano": "51",
+     "nombre": "RETENEDOR RNP RN-TRR5 No51 [RN-S83FX][ROP1]",
+     "codigo": "1601000046",
+     "cantidad": 1,
+     "cantidadPorModelo": null,
+     "precio": 3561.35,
+     "x": 97.94,
+     "y": 34.92
+    },
+    {
+     "id": "nhgqnl41",
+     "plano": "52",
+     "nombre": "TORNILLO RNP RN-S83F-3D No52 [RN-S83FX][ROP1]",
+     "codigo": "1601000089",
+     "cantidad": 2,
+     "cantidadPorModelo": null,
+     "precio": 117079.69,
+     "x": 92.16,
+     "y": 24.44
+    },
+    {
+     "id": "5orblpmw",
+     "plano": "53",
+     "nombre": "PERNO RNP RN-S83F-113/ERP-9 No53 [RN-S83FX][ROP2]",
+     "codigo": "1601000022",
+     "cantidad": 1,
+     "cantidadPorModelo": null,
+     "precio": 8623.76,
+     "x": 72.03,
+     "y": 52.65
+    },
+    {
+     "id": "awgxycby",
+     "plano": "57",
+     "nombre": "TAPON RNP RN-PP2A No57 [RN-S83FX][NSTK]",
+     "codigo": "1601000026",
+     "cantidad": 1,
+     "cantidadPorModelo": null,
+     "precio": 4170.05,
+     "x": 76.26,
+     "y": 35.06
+    },
+    {
+     "id": "ngh0h8fv",
+     "plano": "58",
+     "nombre": "O-RING RNP RN-ORP-116A/83080 No58 [RN-S83FX][ROP1]",
+     "codigo": "1601000027",
+     "cantidad": 1,
+     "cantidadPorModelo": null,
+     "precio": 5648.08,
+     "x": 77.19,
+     "y": 32.4
+    },
+    {
+     "id": "p1u7sj2k",
+     "plano": "59",
+     "nombre": "MANIJA RNP RN-S83F-215H/1053440 No59 [RN-S83FX][ROP1]",
+     "codigo": "1601000028",
+     "cantidad": 1,
+     "cantidadPorModelo": null,
+     "precio": 174883.62,
+     "x": 82.04,
+     "y": 34.36
+    },
+    {
+     "id": "hkjcu473",
+     "plano": "60",
+     "nombre": "PIN RNP RN-ERP6 No60 [RN-S83FX][ROP2]",
+     "codigo": "1601000029",
+     "cantidad": 1,
+     "cantidadPorModelo": null,
+     "precio": 3340.78,
+     "x": 80.8,
+     "y": 21.65
+    },
+    {
+     "id": "4xvnya0t",
+     "plano": "61",
+     "nombre": "O-RING RNP RN-OR-6 No61 [RN-S83FX][ROP1]",
+     "codigo": "1601000019",
+     "cantidad": 1,
+     "cantidadPorModelo": null,
+     "precio": 2325.68,
+     "x": 65.33,
+     "y": 34.5
+    },
+    {
+     "id": "ghacqg0j",
+     "plano": "62",
+     "nombre": "MANIJA DER RNP RN -S83F-114AB No62 [RN-S83FX][ROP2]",
+     "codigo": "1601000030",
+     "cantidad": 1,
+     "cantidadPorModelo": null,
+     "precio": 1520273.5,
+     "x": 83.08,
+     "y": 20.25
+    },
+    {
+     "id": "1yifxcjl",
+     "plano": "63",
+     "nombre": "O-RING RNP RN-OR-7 S83088 No28 No63 [RN-S83FX][ROP1]",
+     "codigo": "1601000031",
+     "cantidad": 1,
+     "cantidadPorModelo": null,
+     "precio": 2477.5,
+     "x": 79.77,
+     "y": 23.18
+    },
+    {
+     "id": "5rviznwh",
+     "plano": "65",
+     "nombre": "VALVULA CONTROL RNP RN-S83F-118B No65 [RN-S83FX][ROP2]",
+     "codigo": "1601000033",
+     "cantidad": 1,
+     "cantidadPorModelo": null,
+     "precio": 133865.23,
+     "x": 76.26,
+     "y": 29.05
+    },
+    {
+     "id": "dw1bnbgk",
+     "plano": "66",
+     "nombre": "O-RING RNP RN-OR-9 No66 [RN-S83FX][ROP1]",
+     "codigo": "1601000034",
+     "cantidad": 1,
+     "cantidadPorModelo": null,
+     "precio": 2496.98,
+     "x": 73.37,
+     "y": 23.04
+    },
+    {
+     "id": "b7nh4veu",
+     "plano": "69",
+     "nombre": "VALVULA ESTRANG RNP RN-S83F-12BM S83042 No69 [RN-S83FX][ROP2]",
+     "codigo": "1601000020",
+     "cantidad": 1,
+     "cantidadPorModelo": null,
+     "precio": 313027.63,
+     "x": 64.09,
+     "y": 21.79
+    },
+    {
+     "id": "0w11c3fn",
+     "plano": "70",
+     "nombre": "FILTRO RNP RN-2062234 S83043 No70 [RN-S83FX][ROP1]",
+     "codigo": "1601000021",
+     "cantidad": 1,
+     "cantidadPorModelo": null,
+     "precio": 91832.67,
+     "x": 66.77,
+     "y": 16.76
+    },
+    {
+     "id": "8ok0xf1q",
+     "plano": "71",
+     "nombre": "TUBO AIRE RNP RN-RB83-147/1031946 No71 [RN-S83FX][ROP2]",
+     "codigo": "1601000047",
+     "cantidad": 1,
+     "cantidadPorModelo": null,
+     "precio": 121423.53,
+     "x": 68.01,
+     "y": 15.08
+    },
+    {
+     "id": "mdnu60nm",
+     "plano": "72",
+     "nombre": "ARANDELA RNP RN-D73H-146W No72 [RN-S83FX][ROP2]",
+     "codigo": "1601000048",
+     "cantidad": 1,
+     "cantidadPorModelo": null,
+     "precio": 7967.13,
+     "x": 73.48,
+     "y": 19.41
+    },
+    {
+     "id": "3hqf2xlq",
+     "plano": "73",
+     "nombre": "TUERCA RNP RN-RB83-146 No73 [RN-S83FX][ROP1]",
+     "codigo": "1601000049",
+     "cantidad": 1,
+     "cantidadPorModelo": null,
+     "precio": 102246.25,
+     "x": 75.03,
+     "y": 19.13
+    },
+    {
+     "id": "zcayijsw",
+     "plano": "74",
+     "nombre": "O-RING RNP RN-OR-21 No5 No74 [RN-S83FX][ROP1]",
+     "codigo": "1601000050",
+     "cantidad": 1,
+     "cantidadPorModelo": null,
+     "precio": 2519.49,
+     "x": 78.22,
+     "y": 18.99
+    },
+    {
+     "id": "fa15h1mq",
+     "plano": "75",
+     "nombre": "ARANDELA RNP RN-S48F-1W No75 [RN-S83FX][ROP1]",
+     "codigo": "1601000051",
+     "cantidad": 1,
+     "cantidadPorModelo": null,
+     "precio": 9919.28,
+     "x": 67.91,
+     "y": 30.87
+    },
+    {
+     "id": "njejufht",
+     "plano": "76",
+     "nombre": "TUERCA RNP RN-S48F-13E No76 [RN-S83FX][ROP1]",
+     "codigo": "1601000052",
+     "cantidad": 1,
+     "cantidadPorModelo": null,
+     "precio": 74443.12,
+     "x": 65.74,
+     "y": 22.21
+    },
+    {
+     "id": "cyetvwud",
+     "plano": "77",
+     "nombre": "FILTRO RNP RN-S48F-13S No77 [RN-S83FX][ROP1]",
+     "codigo": "1601000053",
+     "cantidad": 1,
+     "cantidadPorModelo": null,
+     "precio": 33767.5,
+     "x": 66.36,
+     "y": 33.38
+    },
+    {
+     "id": "2j0xf923",
+     "plano": "78",
+     "nombre": "O-RING RNP RN-OR-10 No 78 [RN-S83FX][ROP1]",
+     "codigo": "1601000054",
+     "cantidad": 1,
+     "cantidadPorModelo": null,
+     "precio": 2390.72,
+     "x": 67.91,
+     "y": 29.05
+    },
+    {
+     "id": "1x9jnixb",
+     "plano": "80",
+     "nombre": "VALVULA RNP RN-760 No80 [RN-S83FX][ROP1]",
+     "codigo": "1601000056",
+     "cantidad": 1,
+     "cantidadPorModelo": null,
+     "precio": 100130.45,
+     "x": 71.93,
+     "y": 28.49
+    },
+    {
+     "id": "xjijg3oq",
+     "plano": "10",
+     "nombre": "RESORTE RNP RN-S58F-36N No10 [RN-S83FX][ROP1]",
+     "codigo": "1601000008",
+     "cantidad": 1,
+     "cantidadPorModelo": null,
+     "precio": 25538.3875,
+     "x": null,
+     "y": null
+    },
+    {
+     "id": "e18yypm8",
+     "plano": "33",
+     "nombre": "CUÑA RNP RN-S58F-12K No33 [RN-S83FX][ROP2]",
+     "codigo": "1601000013",
+     "cantidad": 1,
+     "cantidadPorModelo": null,
+     "precio": 5800.13,
+     "x": null,
+     "y": null
+    },
+    {
+     "id": "ns5rb14e",
+     "plano": "14",
+     "nombre": "BROQUERO 7/8in RNP RN-S58F-7TLB S83014 No14 [RN-S83FX][ROP1]",
+     "codigo": "1601000068",
+     "cantidad": 1,
+     "cantidadPorModelo": null,
+     "precio": 136857,
+     "x": 46.55,
+     "y": 12.37
+    },
+    {
+     "id": "aryx6soi",
+     "plano": "25",
+     "nombre": "CAJA VALVULA RNP RN-S83F-15 No25 [RN-S83FX][ROP1]",
+     "codigo": "1601000079",
+     "cantidad": 1,
+     "cantidadPorModelo": null,
+     "precio": 602099,
+     "x": 39.72,
+     "y": 31.63
+    },
+    {
+     "id": "7arsdvc3",
+     "plano": "10",
+     "nombre": "RESORTE RNP RN-S58F-36N No10 [RN-S83FX][ROP1]",
+     "codigo": "1601000008",
+     "cantidad": 1,
+     "cantidadPorModelo": null,
+     "precio": 25538.39,
+     "x": 48.47,
+     "y": 23.56
+    },
+    {
+     "id": "4ug6jkj0",
+     "plano": "37",
+     "nombre": "RESORTE RNP RN-72-ES S83039 No37 [RN-S83FX][ROP1]",
+     "codigo": "1601000017",
+     "cantidad": 1,
+     "cantidadPorModelo": null,
+     "precio": 4926,
+     "x": null,
+     "y": null
+    },
+    {
+     "id": "gr4x9nfd",
+     "plano": "44",
+     "nombre": "EMPAQUE RNP RN-D83-40 No44 [RN-S83FX][ROP2]",
+     "codigo": "1601000039",
+     "cantidad": 1,
+     "cantidadPorModelo": null,
+     "precio": 8875,
+     "x": null,
+     "y": null
+    },
+    {
+     "id": "lxsj9l3g",
+     "plano": "49",
+     "nombre": "RESORTE RNP RN-D83N-43 No49 [RN-S83FX][ROP1]",
+     "codigo": "1601000044",
+     "cantidad": 1,
+     "cantidadPorModelo": null,
+     "precio": 8362.36,
+     "x": null,
+     "y": null
+    },
+    {
+     "id": "dspby112",
+     "plano": "64",
+     "nombre": "O-RING RNP RN-CL5-324P No64 [RN-S83FX][ROP1]",
+     "codigo": "1601000032",
+     "cantidad": 1,
+     "cantidadPorModelo": null,
+     "precio": 2514.47,
+     "x": null,
+     "y": null
+    },
+    {
+     "id": "r57nt5bm",
+     "plano": "79",
+     "nombre": "CODO AGUA RNP RN-S48F-13T No79 [RN-S83FX][ROP1]",
+     "codigo": "1601000055",
+     "cantidad": 1,
+     "cantidadPorModelo": null,
+     "precio": 127227.27,
+     "x": null,
+     "y": null
+    },
+    {
+     "id": "wy40ryij",
+     "plano": "2",
+     "nombre": "MUÑON ENSAMBLE RNP RN-S53F-36TA/83004 No2 [RN-S83FX][ROP1]",
+     "codigo": "1601000002",
+     "cantidad": 1,
+     "cantidadPorModelo": null,
+     "precio": 174645.16,
+     "x": 30.38,
+     "y": 14.43
+    },
+    {
+     "id": "rcduqpis",
+     "plano": "23",
+     "nombre": "TAPON VALVULA RNP RN-S83F-15B No23 [RN-S83FX][ROP1]",
+     "codigo": "1601000077",
+     "cantidad": 1,
+     "cantidadPorModelo": null,
+     "precio": 318916.7,
+     "x": 33.22,
+     "y": 31.58
+    },
+    {
+     "id": "tr7bchtv",
+     "plano": "24",
+     "nombre": "VALVULA RNP RN-S83F-16 No24 [RN-S83FX][ROP1]",
+     "codigo": "1601000078",
+     "cantidad": 1,
+     "cantidadPorModelo": null,
+     "precio": 275516.72,
+     "x": 36.6,
+     "y": 32.31
+    },
+    {
+     "id": "c73oiq1v",
+     "plano": "16",
+     "nombre": "TUERCA RNP RN-S63F-7N/83015 No16 [RN-S83FX][ROP1]",
+     "codigo": "1601000070",
+     "cantidad": 1,
+     "cantidadPorModelo": null,
+     "precio": 219837.13,
+     "x": 60.87,
+     "y": 12.56
+    },
+    {
+     "id": "8d8y0f34",
+     "plano": "54",
+     "nombre": "MANIJA IZQ RNP RN-S83F-112ABX S83077 No54 [RN-S83FX][ROP1]",
+     "codigo": "1601000023",
+     "cantidad": 1,
+     "cantidadPorModelo": null,
+     "precio": 1961026,
+     "x": 71.25,
+     "y": 42.64
+    },
+    {
+     "id": "zx6uxskq",
+     "plano": "42",
+     "nombre": "TAPON RNP RN-D83N-44 No42 [RN-S83FX][ROP1]",
+     "codigo": "1601000037",
+     "cantidad": 1,
+     "cantidadPorModelo": null,
+     "precio": 35382,
+     "x": 83.59,
+     "y": 34.75
+    },
+    {
+     "id": "icd5vmxw",
+     "plano": "44",
+     "nombre": "EMPAQUE RNP RN-D83-40 No44 [RN-S83FX][ROP2]",
+     "codigo": "1601000039",
+     "cantidad": 1,
+     "cantidadPorModelo": null,
+     "precio": 8875,
+     "x": 85.69,
+     "y": 33.95
+    },
+    {
+     "id": "g3c4yik9",
+     "plano": "45",
+     "nombre": "O-RING RNP RN-OR-18 No45 [RN-S83FX][ROP1]",
+     "codigo": "1601000040",
+     "cantidad": 1,
+     "cantidadPorModelo": null,
+     "precio": 2229,
+     "x": 94.39,
+     "y": 42.54
+    },
+    {
+     "id": "vw6ff5hm",
+     "plano": "49",
+     "nombre": "RESORTE RNP RN-D83N-43 No49 [RN-S83FX][ROP1]",
+     "codigo": "1601000044",
+     "cantidad": 1,
+     "cantidadPorModelo": null,
+     "precio": 8362,
+     "x": 95.57,
+     "y": 35.68
+    },
+    {
+     "id": "lgmo384o",
+     "plano": "7",
+     "nombre": "TUERCA RNP RN-S58-3N/83097 No7 [RN-S83FX][ROP1]",
+     "codigo": "1601000066",
+     "cantidad": 2,
+     "cantidadPorModelo": null,
+     "precio": 40267,
+     "x": 34.64,
+     "y": 19.81
+    },
+    {
+     "id": "gnug1q4h",
+     "plano": "8",
+     "nombre": "ESPACIADOR RNP RN-D73-3S No8 [RN-S83FX][ROP1]",
+     "codigo": "1601000067",
+     "cantidad": 1,
+     "cantidadPorModelo": null,
+     "precio": 9997,
+     "x": 38.38,
+     "y": 24.8
+    }
+   ]
+  }
+ ]
+}
